@@ -1,0 +1,14 @@
+node_modules/
+dist/
+artifacts/
+test-results/
+playwright-report/
+.local/
+*.log
+*.tgz
+*.zip
+.env
+.env.*
+!.env.example
+docs/verification-*.md
+docs/opencode-quota-plugin-plan.md

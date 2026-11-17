@@ -1,0 +1,109 @@
+{
+  "project": "Quota Dock",
+  "primary_task": "在窗口左下角逐行查看账户，每个账户独占一行，五小时与周额度各显示一组进度条和重置倒计时",
+  "layout": "monitor-analysis",
+  "settings_visual": {
+    "layout": "复用 ctx.ui.SettingsLayout、SettingsSection、SettingsRow，标题、分组、间距、背景与宿主设置页一致；不添加头像、品牌图案、说明框或页脚",
+    "text": "仅名称、读数、状态和操作；移除解释、免责、流程说明和实现细节",
+    "controls": "搜索和重命名使用原生 TextInput；排序使用原生 Select；置顶和监控使用原生 Switch；刷新等操作使用原生 Button；重命名按需展开，保存或取消后恢复焦点",
+    "readings": "周期、进度线、剩余比例、重置倒计时同一行，固定数值列，各账户对齐",
+    "states": "离线、已过期、需登录、暂不支持、保存失败等短状态；保留相关操作入口",
+    "verification": "实际 OpenCode 深色设置页与偏好设置对照；独立预览适配器检查 720px 深色、300px 浅色长名称及交互，不作为原生主题验收"
+  },
+  "compact_visual": {
+    "account_rows": "每账户一行，固定名称列，两组等宽额度列",
+    "countdown": "六个等宽字符的固定时间列，数字右对齐，跨账户和时间变化时轨道位置及长度保持一致",
+    "symbols": "不显示图标，只保留账户名、进度条和倒计时；左侧五小时，右侧每周",
+    "track": "3px 平面线条；五小时常态色 #c5dbfb；未知值保留淡色轨道和破折号"
+  },
+  "source_context": [
+    "server_identity",
+    "accountRef",
+    "revision",
+    "window.key"
+  ],
+  "actions": {
+    "analysis": [
+      "悬停查看详情"
+    ],
+    "secondary": [],
+    "more": [
+      "右键设置"
+    ],
+    "primary": "点击账户刷新"
+  },
+  "states": [
+    "loading",
+    "ready",
+    "stale",
+    "offline",
+    "reauth_required",
+    "unsupported",
+    "error",
+    "empty_filtered"
+  ],
+  "languages": [
+    "zh_CN"
+  ],
+  "minimum_window": [
+    136,
+    24
+  ],
+  "verification": {
+    "sizes": [
+      [
+        136,
+        80
+      ],
+      [
+        160,
+        80
+      ],
+      [
+        240,
+        50
+      ],
+      [
+        320,
+        50
+      ]
+    ],
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "scales": [
+      1,
+      1.5
+    ],
+    "performance": "侧栏隐藏时暂停；重建不重复挂载；每个账户独占一行；行内五小时与周额度的进度条和倒计时独立；倒计时从 1h32m 变为 9m、未知与已知读数的列位置和轨道长度不变；136–320px 无横向溢出"
+  },
+  "token_overrides": {
+    "colors": {
+      "dark": {
+        "accent": "#B6D3FF",
+        "hover": "#2B3037",
+        "error": "#F29EAA",
+        "workspace": "#181A1E",
+        "text": "#EEF1F6",
+        "muted": "#A0A8B5",
+        "border": "#343941",
+        "warning": "#F1C984",
+        "surface": "#202328",
+        "success": "#9ED1BF"
+      },
+      "light": {
+        "accent": "#23559A",
+        "hover": "#EDF0F5",
+        "error": "#B6384C",
+        "workspace": "#F7F8FA",
+        "text": "#202735",
+        "muted": "#626D7C",
+        "border": "#DCE1E8",
+        "warning": "#946000",
+        "surface": "#FFFFFF",
+        "success": "#24745C"
+      }
+    }
+  }
+}

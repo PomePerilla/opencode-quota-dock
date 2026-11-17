@@ -1,0 +1,55 @@
+{
+  "name": "opencode-quota-dock",
+  "version": "0.1.6",
+  "description": "Multi-account Codex quota panel for OpenCode Desktop 2.3",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PomePerilla/opencode-quota-dock.git"
+  },
+  "homepage": "https://github.com/PomePerilla/opencode-quota-dock#readme",
+  "bugs": {
+    "url": "https://github.com/PomePerilla/opencode-quota-dock/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./dist/server.js",
+    "./gui-experimental": "./dist/gui-experimental.cjs",
+    "./rpc": "./dist/rpc.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs/compatibility.md",
+    "docs/assets"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "preview": "vite --config vite.preview.config.ts --host 127.0.0.1",
+    "test:ui": "playwright test",
+    "doctor": "node scripts/doctor.mjs",
+    "smoke:live": "node scripts/live-smoke.mjs",
+    "pack:mvp": "npm run build && npm pack --pack-destination artifacts"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.3.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@types/node": "26.6.6",
+    "esbuild": "0.28.2",
+    "solid-js": "1.9.19",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vite-plugin-solid": "2.11.16",
+    "vitest": "5.1.0"
+  }
+}

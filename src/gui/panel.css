@@ -1,0 +1,35 @@
+/* SettingsLayout and every control are rendered and styled by the host SDK. */
+.qd-root{container-type:inline-size;min-width:0;width:100%;background:transparent;color:inherit;font:inherit;--qd-five-hour:#c5dbfb}
+.qd-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.qd-actions,.qd-filters,.qd-account-tools,.qd-control-label{display:flex;align-items:center;gap:8px}
+.qd-filters{margin-bottom:24px}
+.qd-search{flex:1;min-width:0}
+.qd-list{min-width:0}
+.qd-card{min-width:0;margin-bottom:24px}
+.qd-card-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 20px;width:100%;min-width:0}
+.qd-identity{min-width:0;flex:1 1 100px}
+.qd-identity h2{margin:0;font:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qd-account-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:4px;font-size:.85em;opacity:.65}
+.qd-account-tools{flex-wrap:wrap;gap:12px}
+.qd-control-label{gap:6px;white-space:nowrap;font-weight:400}
+.qd-card-muted .qd-identity,.qd-card-muted .qd-window,.qd-card-muted .qd-credits{opacity:.5}
+.qd-name-editor{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-width:0;width:min(420px,65cqw)}
+.qd-name-input{min-width:0;flex:1 1 100px}
+.qd-window{--qd-meter:#9ed1bf;display:grid;grid-template-columns:minmax(20px,1fr) 5ch 6ch;align-items:center;gap:12px;width:clamp(130px,52cqw,380px);min-width:0;font-family:var(--qd-font-data,ui-monospace,monospace);font-size:.9em;font-variant-numeric:tabular-nums}
+.qd-window[data-period=five-hour]{--qd-meter:var(--qd-five-hour)}
+.qd-window[data-tone=warning]{--qd-meter:var(--text-warning-base,#f1c984)}
+.qd-window[data-tone=critical]{--qd-meter:var(--text-critical-base,#f29eaa)}
+.qd-window[data-tone=unknown]{--qd-meter:currentColor}
+.qd-window-label{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qd-track{min-width:0;height:3px;border-radius:1px;background:color-mix(in srgb,currentColor 15%,transparent);overflow:hidden}
+.qd-track>span{display:block;height:100%;border-radius:1px;background:var(--qd-meter);transition:width .25s ease}
+.qd-value,.qd-reset{text-align:right}
+.qd-reset,.qd-no-windows{opacity:.65}
+.qd-credits{font-family:var(--qd-font-data,ui-monospace,monospace);font-variant-numeric:tabular-nums}
+.qd-badge[data-status=reauth_required],.qd-badge[data-status=error],.qd-notice-error{color:var(--text-critical-base,#f29eaa)}
+.qd-badge[data-status=unsupported],.qd-notice:not(.qd-notice-error){color:var(--text-warning-base,#f1c984)}
+.qd-notice{margin-bottom:12px}
+.qd-empty{padding:36px 0;text-align:center;opacity:.65}
+.qd-empty h2{margin:0 0 12px;font:inherit}
+@container(max-width:500px){.qd-account-tools{width:100%;gap:10px}.qd-window{gap:8px}.qd-name-editor{width:100%}.qd-filters{gap:8px}}
+@media(prefers-reduced-motion:reduce){.qd-track>span{transition:none}}

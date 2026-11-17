@@ -1,0 +1,18 @@
+import { OpenCode } from "@opencode/client";
+import { Service } from "@opencode/client/service";
+import { writeFile } from "node:fs/promises";
+import { QuotaDock } from "../dist/rpc.js";
+const endpoint = await Service.discover();
+if (!endpoint) throw new Error("OpenCode service unavailable");
+const client = OpenCode.make({ baseUrl: endpoint.url, headers: Service.headers(endpoint) });
+const rpc = client.rpc(QuotaDock);
+const location = { directory: process.cwd() };
+const first = await rpc.snapshot({}, { location });
+console.log("Observing existing visible GUI monitoring for 70 seconds; no forced refresh will be sent.");
+await new Promise(resolve => setTimeout(resolve, 70_000));
+const last = await rpc.snapshot({}, { location });
+const ready = first.accounts.filter(account => account.status === "ready");
+const observed = ready.map(account => ({ accountRef: account.accountRef, before: account.lastSuccessAt, after: last.accounts.find(next => next.accountRef === account.accountRef)?.lastSuccessAt ?? null }));
+const report = { checkedAt: new Date().toISOString(), windowMs: 70_000, accountsObserved: observed.length, updatedWithoutForcedRefresh: observed.every(item => item.after !== null && item.after > (item.before ?? 0)), results: observed.map(({ accountRef, ...item }) => item) };
+await writeFile("artifacts/monitor-smoke.json", JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2));
+if (observed.length === 0 || !report.updatedWithoutForcedRefresh) process.exitCode = 2;
